@@ -1,0 +1,15 @@
+[
+  {
+    "name": "One Minute Parks",
+    "description": "View a random park from around the world for one minute at a time.",
+    "url": "https://oneminutepark.tv/",
+    "modification": {
+      "include_xpaths": [],
+      "exclude_xpaths": ["//div[@id!='player']"],
+      "css": "",
+    },
+    "utf8_icon": "&#127794;",
+    "settings": {
+    }
+  }
+]
