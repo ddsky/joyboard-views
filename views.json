@@ -6,10 +6,9 @@
     "modification": {
       "include_xpaths": [],
       "exclude_xpaths": ["//div[@id!='player']"],
-      "css": "",
+      "css": ""
     },
     "utf8_icon": "&#127794;",
-    "settings": {
-    }
+    "settings": {}
   }
 ]
