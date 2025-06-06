@@ -8,7 +8,8 @@
       "exclude_xpaths": ["//div[@id!='player']"],
       "css": ""
     },
-    "utf8_icon": "&#127794;",
+    "utf8_icon": "🌳",
+    "requirements": ["video"]
     "settings": {}
   }
 ]
