@@ -12,14 +12,18 @@
     "requirements": ["video"],
     "settings": [
       {
+        "key": "headline",
         "label": "Headline",
+        "placeholder": "Type your headline...",
         "type": "text"
       },
       {
-        "label": "Number",
+        "key": "count",
+        "label": "Number of Items",
         "type": "number"
       },
       {
+        "key": "park",
         "label": "Select Park",
         "options": ["One", "Two"],
         "type": "select"
