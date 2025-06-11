@@ -10,6 +10,20 @@
     },
     "utf8_icon": "🌳",
     "requirements": ["video"],
-    "settings": {}
+    "settings": [
+      {
+        "label": "Headline",
+        "type": "text"
+      },
+      {
+        "label": "Number",
+        "type": "number"
+      },
+      {
+        "label": "Select Park",
+        "options": ["One", "Two"],
+        "type": "select"
+      }
+    ]
   }
 ]
