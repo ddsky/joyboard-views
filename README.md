@@ -65,3 +65,5 @@ This is then added via `&count=123` to the `url`, e.g. `https://myserver.com/joy
     ]
   }
 ```
+
+See more examples [here](https://github.com/ddsky/joyboard-views/blob/master/views.json).
