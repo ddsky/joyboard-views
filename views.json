@@ -8,41 +8,8 @@
       "exclude_xpaths": [],
       "css": ""
     },
-    "utf8_icon": "🤓",
     "image_icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAIAAAC0Ujn1AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC70lEQVRIx62WQWhcVRSGv//cl2YmmYSGgEoQg4ILhYJQN4ooBclCKl0piq4sKGIXbqyt0oVYqtiduHGloktdVFQq0oW4kS7cWBQXWhSrVYSSjpN05r17jotJMjMx0xkmvcv7Lv/533fOPecqH0EBmRu5EiEVBmGK2iwRhO9WVEKmck3ZC0pifq8f/c4ai0zVQLvQDcp2lG1O79cfvxYAQgu3RvMy359lKhExod8ys3yPbroTiaAAcCcV/PBFeuc5GjAZFYMm1dMn9MhreIaudHdN1WgkGgVeTSRdEBV7ZpG6VPukI/CMqxuz+5NYgujb2fpiyPAM0Tvsub8QrKf8/wRG0Ky4lpG2Y+04zQrfnhVthAr1S4sYOOPkmYXy0CvV3QdoB7Ke33ZUd9xbHno1710i0x84NipM0S+9zTBmara0/3GePZNn5jYlROBpimc+1kNH1FzFjBia1yFATJY7vPekanOxcjTWHBmWaLk/eNgWl3n/CWu1SGIn7esAAc/UU7r4o5//SA+/7DffQulkz/MNDp70n86lC1/TSDtkeJPMiDRqWvr0GGb+6MnoBNc8Vl7S7CKfvKgkYkShD3ENhDNtxZ+X4txpu/+wLy3nuYZWjsX5D9PPF6gZMbSraaCud1zu1E1n3+CB5+Pgqfj3b0M6c1zTGtkPRklHUKS0erX87IQ99naC/OWpdPkSc0Mp78B6KDjP1M2+eZd/fvG1K/rqLdU1sv0OAtFwByZb73jzLyStr5IgxupXo1xvXW4rUMI0fisc6Xozsld4NWY3v85F32nNLDC7OP7xYjwgQSK+/YDa/Jg8xkwjRKggff4mgepjSYdG1nW/kZm0UYvjwS4GBkcqsGL0oBq2n+i19QEgnXVWK7yadOxWXIVOq5u0TdYyqg6335efep09RkRvXIyuMfVPNd11AIQstqSjbNvSPpb27f5RFoBMoHiBSCkWbttI0eSPJxGBJWS68htVWYSknPX7xRvyjuwCihpu+g8koy52NTk+ZwAAAABJRU5ErkJggg==",
-    "svg_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d=\"M0 32v448h448V32H0zm21.2 197.2H21c.1-.1 .2-.3 .3-.4 0 .1 0 .3-.1 .4zm218 53.9V384h-31.4V281.3L128 128h37.3c52.5 98.3 49.2 101.2 59.3 125.6 12.3-27 5.8-24.4 60.6-125.6H320l-80.8 155.1z\"/></svg>",
     "requirements": [],
     "settings": []
-  },  
-  {
-    "name": "One Minute Parks",
-    "description": "View a random park from around the world for one minute at a time.",
-    "url": "https://oneminutepark.tv/",
-    "modification": {
-      "include_xpaths": [],
-      "exclude_xpaths": ["//div[@id!='player']"],
-      "css": ""
-    },
-    "utf8_icon": "🌳",
-    "requirements": ["video"],
-    "settings": [
-      {
-        "key": "headline",
-        "label": "Headline",
-        "placeholder": "Type your headline...",
-        "type": "text"
-      },
-      {
-        "key": "count",
-        "label": "Number of Items",
-        "type": "number"
-      },
-      {
-        "key": "park",
-        "label": "Select Park",
-        "options": ["One", "Two"],
-        "type": "select"
-      }
-    ]
-  }
+  }  
 ]
