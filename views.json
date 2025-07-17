@@ -1,5 +1,18 @@
 [
-   {
+  {
+    "name": "Harry Potter Quotes",
+    "description": "Random quotes from the Harry Potter universe.",
+    "url": "https://davidurbansky.com/harrypotter/?hidebutton=true",
+    "modification": {
+      "include_xpaths": [],
+      "exclude_xpaths": [],
+      "css": ""
+    },
+    "image_icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAABeUlEQVR4nN3VsUuVURzG8Y9eusQ516TAhiBwSpcKEZpb/BcklwZbGlxEorXBQaSGtrYgkHSSoCkQ/wJFhLaoocUhgiLBoXtfOb5nuMh777XuvRA9449znu97nt/vnJd/QWPcirQCG0MzixSRZ30DOpnF/w4Q+BT4ibt4jE0c43q/gCk8qpVmBb7iNR6iieVOvnfwpAOgXqcY4Vc2/VLj6DJFYKZtXQIcdAJ8xosKwD0cjlJcYhuTOaKNvG7uHCB9QKXS0fewHcqNq1jDDzyt6MHzXHvQ5tHqBjiLAusjZRzfsYUbVbFFVnJt6U8AZ0rZ1nnTXqsALFT0qrgQoNeYXuNKYDH1pcY+JgYKiNyOnKRe1fiIb3iZzX/3DcBoumSpFviAm3iFEyx0NW8wnTe+7QYN7KZHMZYR9adGBTSyFmmGctIGq8hc5H06wcDNz41o74n5G0Xu58jSZRy8xsq/XjrBu6EAJmhkwPxQAEnpHgRmhwnYucp4r4WnPRN7EhOfKKkAAAAASUVORK5CYII=",
+    "requirements": [],
+    "settings": []
+  },
+  {
     "name": "Hacker News",
     "description": "Latest Hacker News front page.",
     "url": "https://news.ycombinator.com/",
@@ -11,5 +24,5 @@
     "image_icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAIAAAC0Ujn1AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC70lEQVRIx62WQWhcVRSGv//cl2YmmYSGgEoQg4ILhYJQN4ooBclCKl0piq4sKGIXbqyt0oVYqtiduHGloktdVFQq0oW4kS7cWBQXWhSrVYSSjpN05r17jotJMjMx0xkmvcv7Lv/533fOPecqH0EBmRu5EiEVBmGK2iwRhO9WVEKmck3ZC0pifq8f/c4ai0zVQLvQDcp2lG1O79cfvxYAQgu3RvMy359lKhExod8ys3yPbroTiaAAcCcV/PBFeuc5GjAZFYMm1dMn9MhreIaudHdN1WgkGgVeTSRdEBV7ZpG6VPukI/CMqxuz+5NYgujb2fpiyPAM0Tvsub8QrKf8/wRG0Ky4lpG2Y+04zQrfnhVthAr1S4sYOOPkmYXy0CvV3QdoB7Ke33ZUd9xbHno1710i0x84NipM0S+9zTBmara0/3GePZNn5jYlROBpimc+1kNH1FzFjBia1yFATJY7vPekanOxcjTWHBmWaLk/eNgWl3n/CWu1SGIn7esAAc/UU7r4o5//SA+/7DffQulkz/MNDp70n86lC1/TSDtkeJPMiDRqWvr0GGb+6MnoBNc8Vl7S7CKfvKgkYkShD3ENhDNtxZ+X4txpu/+wLy3nuYZWjsX5D9PPF6gZMbSraaCud1zu1E1n3+CB5+Pgqfj3b0M6c1zTGtkPRklHUKS0erX87IQ99naC/OWpdPkSc0Mp78B6KDjP1M2+eZd/fvG1K/rqLdU1sv0OAtFwByZb73jzLyStr5IgxupXo1xvXW4rUMI0fisc6Xozsld4NWY3v85F32nNLDC7OP7xYjwgQSK+/YDa/Jg8xkwjRKggff4mgepjSYdG1nW/kZm0UYvjwS4GBkcqsGL0oBq2n+i19QEgnXVWK7yadOxWXIVOq5u0TdYyqg6335efep09RkRvXIyuMfVPNd11AIQstqSjbNvSPpb27f5RFoBMoHiBSCkWbttI0eSPJxGBJWS68htVWYSknPX7xRvyjuwCihpu+g8koy52NTk+ZwAAAABJRU5ErkJggg==",
     "requirements": [],
     "settings": []
-  }  
+  }
 ]
