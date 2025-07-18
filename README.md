@@ -14,6 +14,8 @@ To define a view you have some required and some optional fields.
 
 `modification`: An object containing at least one of `include_xpaths`, `exclude_xpaths`, or `css`. These will be applied to the `url`. For example, if the `url` points to a website, you can remove certain elements via `remove_xpaths` to make the view look nicer.
 
+`preview_images`: An array or preview images that show how the view can look like.
+
 `requirements`: A list of features the user's joyboard needs to have in order to properly make use of the view. The following requirements are available: 
  * `video`: The display needs to be able to playback video.
  * `touch`: The display must support touch controls.
@@ -43,6 +45,7 @@ This is then added via `&count=123` to the `url`, e.g. `https://myserver.com/joy
     },
     "utf8_icon": "🌳",
     "image_icon": "https://myserver.com/joyview/icon.png",
+    "preview_images": ["https://myserver.com/joyview/preview1.png"],
     "requirements": ["video", "touch"],
     "settings": [
       {
