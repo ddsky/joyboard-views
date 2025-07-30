@@ -1,8 +1,22 @@
 [
   {
+    "name": "Marketoonist Comics",
+    "description": "Random quotes from the Harry Potter universe.",
+    "url": "https://davidurbansky.com/joyboard/marketoonist-random",
+    "modification": {
+      "include_xpaths": [],
+      "exclude_xpaths": [],
+      "css": ""
+    },
+    "image_icon": "https://marketoonist.com/wp-content/themes/marketoonist/assets/images/favicon.ico",
+    "preview_images": [],
+    "requirements": [],
+    "settings": []
+  },
+  {
     "name": "Harry Potter Quotes",
     "description": "Random quotes from the Harry Potter universe.",
-    "url": "https://davidurbansky.com/harrypotter/?hidebutton=true",
+    "url": "https://davidurbansky.com/joyboard/harrypotter/?hidebutton=true",
     "modification": {
       "include_xpaths": [],
       "exclude_xpaths": [],
