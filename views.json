@@ -1,4 +1,18 @@
 [
+   {
+    "name": "City Walk",
+    "description": "Random walks through random cities.",
+    "url": "https://www.citywalki.com/?type=walk",
+    "modification": {
+      "include_xpaths": [],
+      "exclude_xpaths": ["//div[@class='controlswrapper']"],
+      "css": ""
+    },
+    "image_icon": "https://www.citywalki.com/assets/img/favicon.svg",
+    "preview_images": [],
+    "requirements": [],
+    "settings": []
+  },
   {
     "name": "Marketoonist Comics",
     "description": "Random quotes from the Harry Potter universe.",
