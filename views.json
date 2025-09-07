@@ -1,4 +1,18 @@
-[
+[   
+   {
+    "name": "One Minute Park",
+    "description": "Random parks around the world.",
+    "url": "https://oneminutepark.tv/",
+    "modification": {
+      "include_xpaths": [],
+      "exclude_xpaths": [],
+      "css": ""
+    },
+    "image_icon": "https://oneminutepark.tv/images/favicon.svg",
+    "preview_images": [],
+    "requirements": [],
+    "settings": []
+  },
    {
     "name": "City Walk",
     "description": "Random walks through random cities.",
