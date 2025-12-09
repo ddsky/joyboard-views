@@ -1,5 +1,19 @@
 [   
    {
+    "name": "Streetview Fun",
+    "description": "Random, fun places found on Google Street View",
+    "url": "https://davidurbansky.com/joyboard/streetview.html",
+    "modification": {
+      "include_xpaths": [],
+      "exclude_xpaths": [],
+      "css": ""
+    },
+    "image_icon": "https://img.icons8.com/?size=50&id=TAhkirSWlPP9&format=png&color=000000",
+    "preview_images": [],
+    "requirements": [],
+    "settings": []
+  },
+   {
     "name": "One Minute Park",
     "description": "Random parks around the world.",
     "url": "https://oneminutepark.tv/",
