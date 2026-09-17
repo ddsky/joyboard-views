@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unnützes Steuerwissen</title>
+<meta name="description" content="Zufällige Kuriositäten, Fakten, Witze und Zitate rund um Steuern – amtlich gestempelt und völlig unnütz.">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --desk: #26312b;
+    --desk-shade: #1b231f;
+    --paper: #f3eee1;
+    --paper-edge: #ddd3bc;
+    --ink: #1f1d1a;
+    --ink-soft: #6f695d;
+    --rule: #d3c9b2;
+    --shadow: rgba(0, 0, 0, .45);
+    --stamp-de: #b3312a;
+    --stamp-welt: #1f5a96;
+    --stamp-geschichte: #8a5a1c;
+    --stamp-witz: #6b3fa0;
+    --stamp-zitat: #17786b;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --desk: #0c0f0d;
+      --desk-shade: #070908;
+      --paper: #1d1b17;
+      --paper-edge: #2c2923;
+      --ink: #ebe4d2;
+      --ink-soft: #9d9583;
+      --rule: #3b372f;
+      --shadow: rgba(0, 0, 0, .7);
+      --stamp-de: #ec6a5d;
+      --stamp-welt: #6ea8e6;
+      --stamp-geschichte: #d49c55;
+      --stamp-witz: #b48ce8;
+      --stamp-zitat: #5cc4b3;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --desk: #0c0f0d;
+    --desk-shade: #070908;
+    --paper: #1d1b17;
+    --paper-edge: #2c2923;
+    --ink: #ebe4d2;
+    --ink-soft: #9d9583;
+    --rule: #3b372f;
+    --shadow: rgba(0, 0, 0, .7);
+    --stamp-de: #ec6a5d;
+    --stamp-welt: #6ea8e6;
+    --stamp-geschichte: #d49c55;
+    --stamp-witz: #b48ce8;
+    --stamp-zitat: #5cc4b3;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    background: radial-gradient(120% 90% at 50% 40%, var(--desk) 0%, var(--desk-shade) 100%);
+    color: var(--ink);
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    display: grid;
+    place-items: center;
+    padding: 3.5vmin;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  /* Hochformat 9:16 ist das Zielformat; Querformat weiter unten als Fallback */
+  .paper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--paper);
+    border-radius: .8vmin;
+    box-shadow: 0 .3vmin 0 var(--paper-edge), 0 3vmin 7vmin -2vmin var(--shadow);
+    padding: 7vmin 7vmin 5vmin;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    overflow: hidden;
+  }
+
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-size: max(11px, 2.2vmin);
+    line-height: 1.35;
+    color: var(--ink-soft);
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3vmin;
+  }
+  header strong { color: var(--ink); font-weight: 600; }
+  header .meta { text-align: right; }
+
+  h1 {
+    margin-top: 5vmin;
+    padding-bottom: 3.5vmin;
+    border-bottom: .3vmin solid var(--rule);
+    font-size: 5.4vmin;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -.01em;
+  }
+  h1 span { display: block; font-weight: 300; font-style: italic; }
+
+  main {
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    padding: 5vmin 0;
+    overflow: hidden;
+  }
+  #fact {
+    width: 100%;
+    font-size: 7vmin;
+    line-height: 1.22;
+    font-weight: 400;
+    font-optical-sizing: auto;
+    letter-spacing: -.005em;
+    white-space: pre-line;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphenate-limit-chars: 12 5 5;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+    transition: opacity .32s ease, transform .32s ease;
+  }
+  #fact.is-quote .text { font-style: italic; }
+  #fact .by {
+    display: block;
+    margin-top: .8em;
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: max(11px, .42em);
+    line-height: 1.35;
+    letter-spacing: .04em;
+    color: var(--ink-soft);
+    white-space: normal;
+  }
+  #fact.leaving { opacity: 0; transform: translateY(-1.5vmin); }
+  #fact.entering { opacity: 0; transform: translateY(1.5vmin); transition: none; }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 5vmin;
+    padding-top: 3vmin;
+    border-top: .3vmin solid var(--rule);
+    min-height: 19vmin;
+  }
+  footer .fineprint { font-size: max(10px, 2vmin); }
+
+  .stamp {
+    --c: var(--stamp-de);
+    flex: none;
+    margin: -6vmin 1.5vmin 0 0;
+    padding: 1.6vmin 3vmin 1.7vmin;
+    border: .8vmin solid var(--c);
+    outline: .3vmin solid var(--c);
+    outline-offset: .7vmin;
+    border-radius: 1.2vmin;
+    color: var(--c);
+    text-align: center;
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+    text-transform: uppercase;
+    line-height: 1;
+    transform: rotate(-7deg);
+    opacity: .88;
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.4 0 0 0 1.95'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.4 0 0 0 1.95'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .stamp small {
+    display: block;
+    font-size: max(9px, 1.9vmin);
+    font-weight: 600;
+    letter-spacing: .18em;
+    margin-bottom: 1vmin;
+  }
+  .stamp b {
+    display: block;
+    font-size: max(16px, 6vmin);
+    font-weight: 700;
+    letter-spacing: .06em;
+  }
+  .stamp[data-cat="welt"] { --c: var(--stamp-welt); transform: rotate(5deg); }
+  .stamp[data-cat="geschichte"] { --c: var(--stamp-geschichte); transform: rotate(-4deg); }
+  .stamp[data-cat="witz"] { --c: var(--stamp-witz); transform: rotate(8deg); }
+  .stamp[data-cat="zitat"] { --c: var(--stamp-zitat); transform: rotate(-9deg); }
+  .stamp.thump { animation: thump .42s cubic-bezier(.2, .9, .3, 1.15) both; }
+  @keyframes thump {
+    0% { opacity: 0; scale: 1.7; }
+    60% { opacity: .95; scale: .97; }
+    100% { opacity: .88; scale: 1; }
+  }
+
+  .progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: .7vmin;
+    background: var(--ink-soft);
+    opacity: .35;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  .progress.run { animation: fill linear both; }
+  @keyframes fill { to { transform: scaleX(1); } }
+
+  @media (orientation: landscape) {
+    .paper { padding: 4.5vmin 6vmin 3.5vmin; grid-template-rows: auto 1fr auto; }
+    .mono { font-size: max(11px, 1.6vmin); }
+    header { padding-bottom: 1.6vmin; border-bottom: .25vmin solid var(--rule); }
+    header br { display: none; }
+    header .meta #date::before { content: "· "; }
+    h1 { display: none; }
+    main { padding: 3vmin 0; }
+    footer { min-height: 10vmin; padding-top: 1.6vmin; border-top-width: .25vmin; }
+    footer .fineprint { font-size: max(10px, 1.5vmin); }
+    footer .fineprint br { display: none; }
+    .stamp { margin: -5vmin 1vmin -.5vmin 0; padding: 1vmin 2.2vmin 1.1vmin; border-width: .55vmin; outline-width: .22vmin; outline-offset: .45vmin; }
+    .stamp small { font-size: max(9px, 1.25vmin); margin-bottom: .7vmin; }
+    .stamp b { font-size: max(16px, 4.2vmin); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #fact, #fact.leaving, #fact.entering { transition: none; transform: none; }
+    .stamp.thump { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="paper">
+    <header class="mono">
+      <span><strong>Finanzamt für</strong> <br>Unnützes Wissen</span>
+      <span class="meta"><span id="az">Az. USW-000</span> <br><span id="date"></span></span>
+    </header>
+    <h1>Bescheid über <span>unnützes Steuerwissen</span></h1>
+    <main>
+      <div id="fact" aria-live="polite"></div>
+    </main>
+    <footer>
+      <span class="mono fineprint">Vorläufig · <br>unverbindlich · <br>völlig unnütz</span>
+      <div class="stamp" id="stamp" data-cat="de"><small>Amtlich geprüft</small><b>Deutschland</b></div>
+    </footer>
+    <div class="progress" id="progress"></div>
+  </div>
+
+<script>
+/*
+ * Kategorien: de = Deutschland, welt = weltweit, geschichte = historisch,
+ * witz = Witz, zitat = Zitat (mit Quelle in "a").
+ * Zeilenumbrüche mit \n trennen z. B. Frage und Pointe.
+ */
+const FACTS = [
+  // ——— Deutschland ———
+  { c: "de", t: "Die Schaumweinsteuer wurde 1902 eingeführt, um die Kriegsflotte von Kaiser Wilhelm II. zu finanzieren. Die Flotte versenkte sich 1919 selbst – die Sektsteuer gibt es bis heute." },
+  { c: "de", t: "Auf jede 0,75-Liter-Flasche Sekt fallen in Deutschland 1,02 Euro Schaumweinsteuer an. Die Mehrwertsteuer kommt noch obendrauf." },
+  { c: "de", t: "Warum viele Frizzante-Flaschen mit einer Kordel verschlossen sind? Mit Sektkorken und Drahtbügel würden sie in Deutschland als Schaumwein besteuert." },
+  { c: "de", t: "Auf stillen Wein erhebt Deutschland keine Verbrauchsteuer. Auf Sekt, Bier und Schnaps dagegen sehr wohl." },
+  { c: "de", t: "Deutschland hat bis heute eine Kaffeesteuer: 2,19 Euro pro Kilo Röstkaffee und 4,78 Euro pro Kilo Instantkaffee." },
+  { c: "de", t: "Die Kaffeesteuer kassiert nicht das Finanzamt, sondern der Zoll – genau wie die Steuern auf Bier, Sekt, Tabak und Strom." },
+  { c: "de", t: "Für Hunde zahlt man in fast jeder deutschen Gemeinde Steuer, für Katzen nirgends. Die Hundesteuer galt ursprünglich als Luxussteuer." },
+  { c: "de", t: "Die Hundesteuer bringt den deutschen Gemeinden über 400 Millionen Euro im Jahr ein – 2024 waren es rund 430 Millionen, ein Rekord." },
+  { c: "de", t: "Beim zweiten Hund wird’s oft teurer: Viele Gemeinden verlangen für jeden weiteren Hund einen höheren Steuersatz als für den ersten." },
+  { c: "de", t: "Blindenführhunde sind in aller Regel von der Hundesteuer befreit." },
+  { c: "de", t: "Für Hunde, die als gefährlich eingestuft sind, verlangen viele Gemeinden ein Vielfaches der normalen Hundesteuer." },
+  { c: "de", t: "Bad Sooden-Allendorf in Hessen führte 2013 als erste deutsche Stadt eine Pferdesteuer ein. Einige hessische Gemeinden zogen nach." },
+  { c: "de", t: "Die Zweitwohnungsteuer wurde in Überlingen am Bodensee erfunden und dort 1973 eingeführt. Heute erheben sie Hunderte Städte und Gemeinden." },
+  { c: "de", t: "Köln gehörte zu den ersten deutschen Städten mit einer „Sexsteuer“ – offiziell eine Vergnügungsteuer auf sexuelle Dienstleistungen." },
+  { c: "de", t: "Bonn stellte 2011 einen umgebauten Parkscheinautomaten am Straßenstrich auf: Für 6 Euro gab es dort das Steuerticket für die Nacht." },
+  { c: "de", t: "Weimar erhob 2005 als erste deutsche Stadt eine Abgabe auf Hotelübernachtungen – die „Kulturförderabgabe“. Viele Städte zogen nach." },
+  { c: "de", t: "Bis 1980 mussten in Deutschland Steuern auf Spielkarten gezahlt werden – die Spielkartensteuer." },
+  { c: "de", t: "Glühbirnen, Salz, Tee und Zucker hatten in Deutschland jeweils eine eigene Steuer. Sie fielen erst 1993 mit dem EU-Binnenmarkt weg." },
+  { c: "de", t: "Von 1930 bis 1983 hatte Deutschland ein staatliches Streichholzmonopol – als Pfand für einen Kredit des schwedischen „Zündholzkönigs“ Ivar Kreuger." },
+  { c: "de", t: "Das deutsche Branntweinmonopol endete erst am 31. Dezember 2017 – nach rund 100 Jahren." },
+  { c: "de", t: "Die Biersteuer ist die einzige Verbrauchsteuer, deren Einnahmen den Bundesländern zustehen." },
+  { c: "de", t: "Bier wird in Deutschland nicht nach Alkoholgehalt besteuert, sondern nach der Stammwürze – gemessen in Grad Plato." },
+  { c: "de", t: "Die Alkopopsteuer wurde 2004 eingeführt, damit Jugendliche weniger süße Schnaps-Mixgetränke kaufen." },
+  { c: "de", t: "Der Solidaritätszuschlag startete 1991 – und war zunächst auf ein Jahr befristet." },
+  { c: "de", t: "Seit 2021 zahlen rund 90 Prozent der Steuerzahler keinen Soli mehr." },
+  { c: "de", t: "Die Kirchensteuer beträgt in Bayern und Baden-Württemberg 8 Prozent der Einkommensteuer, in allen anderen Bundesländern 9 Prozent." },
+  { c: "de", t: "Die Kirchensteuer zieht das Finanzamt ein. Die Kirchen zahlen dem Staat dafür eine Gebühr von einigen Prozent der Einnahmen." },
+  { c: "de", t: "Die Mehrwertsteuer kam 1968 nach Deutschland – mit einem Regelsatz von 10 Prozent. Seit 2007 sind es 19." },
+  { c: "de", t: "Streng genommen gibt es in Deutschland keine Mehrwertsteuer: Im Gesetz heißt sie Umsatzsteuer." },
+  { c: "de", t: "Leitungswasser wird mit 7 Prozent Umsatzsteuer besteuert, Mineralwasser mit 19 Prozent." },
+  { c: "de", t: "Kuhmilch: 7 Prozent Umsatzsteuer. Hafermilch: 19 Prozent. Für das Finanzamt ist ein Haferdrink eben keine Milch." },
+  { c: "de", t: "Hummer, Langusten, Austern und Schnecken gelten steuerlich als Luxus: 19 Prozent Umsatzsteuer statt der 7 Prozent für die meisten Speisefische." },
+  { c: "de", t: "Zierfische werden mit 19 Prozent besteuert, Speisefische mit 7 Prozent. Der Goldfisch zahlt also mehr als der Karpfen." },
+  { c: "de", t: "Ein Latte macchiato zum Mitnehmen kann mit nur 7 Prozent besteuert werden – wenn er zu mindestens 75 Prozent aus Milch besteht. Ein Espresso to go: 19 Prozent." },
+  { c: "de", t: "Seit 2026 wird Essen im Restaurant wieder mit 7 Prozent besteuert, Getränke aber weiter mit 19 Prozent. Die Pizza kommt steuerlich also günstiger weg als die Cola dazu." },
+  { c: "de", t: "Seit 2020 gelten Tampons und Binden nicht mehr als Luxusartikel: Die Steuer sank von 19 auf 7 Prozent." },
+  { c: "de", t: "E-Books werden seit Ende 2019 wie gedruckte Bücher mit 7 Prozent besteuert. Vorher waren es 19 Prozent." },
+  { c: "de", t: "Wegen Corona sank die Mehrwertsteuer von Juli bis Dezember 2020 kurzzeitig auf 16 Prozent." },
+  { c: "de", t: "Lottogewinne sind in Deutschland steuerfrei. Dafür steckt schon im Spieleinsatz eine Lotteriesteuer von rund 16,7 Prozent." },
+  { c: "de", t: "Auch illegale Einkünfte sind steuerpflichtig. § 40 der Abgabenordnung stellt klar: Ob etwas gegen ein Gesetz verstößt, ist für die Besteuerung egal." },
+  { c: "de", t: "Bis 1999 durften deutsche Firmen Schmiergelder an ausländische Beamte als „nützliche Aufwendungen“ von der Steuer absetzen." },
+  { c: "de", t: "Wer am 31. Dezember heiratet, darf schon für das ganze Jahr das Ehegattensplitting nutzen." },
+  { c: "de", t: "Freiwillige Trinkgelder an Angestellte sind in Deutschland komplett steuerfrei – egal wie hoch sie sind." },
+  { c: "de", t: "Wer sein Haustier zu Hause von einem Tiersitter betreuen lässt, bekommt dafür eine Steuerermäßigung für haushaltsnahe Dienstleistungen. Das entschied der Bundesfinanzhof 2015." },
+  { c: "de", t: "ELSTER, das Steuerportal der Finanzverwaltung, steht für „ELektronische STeuerERklärung“ und startete 1999." },
+  { c: "de", t: "Die Lohnsteuerkarte aus Pappe wurde 2010 zum letzten Mal verschickt." },
+  { c: "de", t: "Jedes Baby in Deutschland bekommt kurz nach der Geburt eine elfstellige Steuer-ID. Sie bleibt ein Leben lang gleich." },
+  { c: "de", t: "Wer seine Steuererklärung abgeben muss und zu spät dran ist, riskiert einen Verspätungszuschlag – mindestens 25 Euro pro angefangenem Monat." },
+  { c: "de", t: "Wer nicht zur Steuererklärung verpflichtet ist, hat für eine freiwillige Abgabe vier Jahre Zeit. Es lohnt sich oft: Die durchschnittliche Erstattung liegt über 1.000 Euro." },
+  { c: "de", t: "„Die Steuer“ kommt vom althochdeutschen „stiura“ – Stütze, Unterstützung. Mit „dem Steuer“ eines Schiffes ist sie tatsächlich verwandt." },
+  { c: "de", t: "Das Wort „Fiskus“ kommt vom lateinischen „fiscus“ und bedeutete ursprünglich: Korb – später Geldkorb." },
+  { c: "de", t: "Die Sektsteuer bezahlt längst keine Kriegsschiffe mehr: Steuern sind in Deutschland grundsätzlich nicht zweckgebunden." },
+  { c: "de", t: "Die Ökosteuer von 1999 floss großteils in die Rentenkasse. Spötter tauften das Prinzip „Rasen für die Rente“." },
+  { c: "de", t: "Auf einen Liter Superbenzin fallen gut 65 Cent Energiesteuer an. Und auf diese Steuer wird dann noch Mehrwertsteuer fällig." },
+  { c: "de", t: "Nach den Anschlägen vom 11. September 2001 erhöhte Deutschland die Tabaksteuer, um Anti-Terror-Maßnahmen zu finanzieren." },
+  { c: "de", t: "Bei einer Schachtel Zigaretten landet weit mehr als die Hälfte des Preises beim Staat." },
+  { c: "de", t: "In Deutschland gibt es rund 40 verschiedene Steuern – von der Einkommensteuer bis zur Jagdsteuer." },
+  { c: "de", t: "Die Feuerschutzsteuer steckt in jeder Feuer- und Gebäudeversicherung. Ausnahmsweise ist sie zweckgebunden: Das Geld fließt in Brandschutz und Feuerwehren." },
+  { c: "de", t: "Preußen führte 1891 eine moderne Einkommensteuer ein. Der Spitzensteuersatz: 4 Prozent." },
+  { c: "de", t: "1946 setzte der Alliierte Kontrollrat den Spitzensteuersatz im besetzten Deutschland auf 95 Prozent fest." },
+  { c: "de", t: "Der Bund der Steuerzahler berechnet jedes Jahr den Steuerzahlergedenktag: Bis etwa Mitte Juli arbeiten wir rechnerisch nur für Steuern und Abgaben." },
+  { c: "de", t: "Bund, Länder und Gemeinden nehmen zusammen fast eine Billion Euro Steuern pro Jahr ein." },
+  { c: "de", t: "Die ertragreichste Steuer Deutschlands ist die Umsatzsteuer – noch vor der Lohnsteuer." },
+  { c: "de", t: "Zweimal im Jahr tagt der „Arbeitskreis Steuerschätzungen“ und sagt voraus, wie viel Steuergeld reinkommt – und zwar schon seit 1955." },
+  { c: "de", t: "Der Rundfunkbeitrag ist keine Steuer. Juristisch ist das ein himmelweiter Unterschied – fürs Portemonnaie eher nicht." },
+  { c: "de", t: "Die Behauptung, 70 Prozent der weltweiten Steuerliteratur seien auf Deutsch, ist ein Mythos. Kompliziert ist das deutsche Steuerrecht trotzdem." },
+  { c: "de", t: "Die Grundsteuer wird seit 2025 neu berechnet. Vorher basierte sie im Westen auf Grundstückswerten von 1964 – im Osten sogar von 1935." },
+  { c: "de", t: "Eltern können jedem ihrer Kinder alle zehn Jahre 400.000 Euro steuerfrei schenken." },
+  { c: "de", t: "Die Grunderwerbsteuer liegt je nach Bundesland zwischen 3,5 und 6,5 Prozent des Kaufpreises." },
+  { c: "de", t: "2008 kaufte der Bundesnachrichtendienst gestohlene Kundendaten einer Liechtensteiner Bank. Die „Steuer-CD“ löste eine Welle von Selbstanzeigen aus." },
+  { c: "de", t: "Sexarbeitende zahlen in einigen Bundesländern nach dem „Düsseldorfer Verfahren“ eine pauschale Steuer-Vorauszahlung pro Arbeitstag." },
+
+  // ——— Welt ———
+  { c: "welt", t: "Monaco erhebt von seinen Einwohnern keine Einkommensteuer – mit einer Ausnahme: Französische Staatsbürger müssen trotzdem zahlen." },
+  { c: "welt", t: "In den Vereinigten Arabischen Emiraten zahlt man auf sein Gehalt keine Einkommensteuer." },
+  { c: "welt", t: "In Norwegen kann jeder nachschauen, wie viel die Nachbarn verdienen und an Steuern zahlen. Seit 2014 sehen die Nachbarn allerdings auch, wer nachgeschaut hat." },
+  { c: "welt", t: "In Finnland werden jedes Jahr im Herbst die Steuerdaten veröffentlicht. Die Medien küren dann die Topverdiener des Landes." },
+  { c: "welt", t: "Japan erhebt seit 2019 eine „Sayonara-Steuer“ von jedem, der das Land per Flugzeug oder Schiff verlässt. Seit Juli 2026 kostet sie 3.000 statt 1.000 Yen." },
+  { c: "welt", t: "Bhutan verlangt von Touristen eine Gebühr für nachhaltige Entwicklung – 100 US-Dollar pro Nacht." },
+  { c: "welt", t: "Venedig verlangte 2024 als erste Stadt der Welt an ausgewählten Tagen Eintritt von Tagestouristen." },
+  { c: "welt", t: "Ungarn führte 2011 eine „Chipssteuer“ ein – auf Snacks, Süßigkeiten und Energydrinks mit viel Salz oder Zucker." },
+  { c: "welt", t: "Dänemark führte 2011 die weltweit erste Fettsteuer ein – und schaffte sie nach gut einem Jahr wieder ab. Viele Dänen kauften ihre Butter einfach in Deutschland." },
+  { c: "welt", t: "Dänemark hat sich darauf geeinigt, ab 2030 als erstes Land der Welt eine CO₂-Abgabe auf Nutztiere zu erheben – im Volksmund die „Kuhpups-Steuer“." },
+  { c: "welt", t: "Neuwagen sind in Dänemark extrem teuer: Die Zulassungssteuer kann über 100 Prozent des Autowerts betragen." },
+  { c: "welt", t: "Als Großbritannien 2018 eine Zuckerabgabe auf Limonaden einführte, hatten viele Hersteller den Zucker schon vorher reduziert – um die Steuer zu umgehen." },
+  { c: "welt", t: "Uganda erhob ab 2018 eine Steuer auf soziale Medien: 200 Schilling pro Tag für die Nutzung von Facebook, WhatsApp & Co." },
+  { c: "welt", t: "Rumänien dehnte 2011 die Einkommensteuer auf Hexen, Wahrsager und Astrologen aus. Einige Hexen reagierten mit Flüchen." },
+  { c: "welt", t: "Spanien hatte von 2015 bis 2018 eine sogenannte „Sonnensteuer“ auf selbst verbrauchten Solarstrom." },
+  { c: "welt", t: "In manchen italienischen Gemeinden zahlen Geschäfte für den Schatten, den ihre Markisen auf öffentlichen Grund werfen." },
+  { c: "welt", t: "Im US-Bundesstaat Illinois gilt ein Snickers steuerlich als Süßigkeit, ein Twix dagegen als Lebensmittel – weil Twix Mehl enthält." },
+  { c: "welt", t: "In New York ist ein ganzer Bagel steuerfrei. Lässt man ihn im Laden aufschneiden, wird Umsatzsteuer fällig." },
+  { c: "welt", t: "Wer in Kanada weniger als sechs Donuts kauft, zahlt Umsatzsteuer. Ab sechs Stück gilt es als Lebensmitteleinkauf – steuerfrei." },
+  { c: "welt", t: "In Großbritannien sind Kekse mehrwertsteuerfrei – außer, sie sind mit Schokolade überzogen." },
+  { c: "welt", t: "1991 klärte ein britisches Gericht: Jaffa Cakes sind Kuchen, keine Kekse. Ein Argument: Kuchen wird hart, wenn er alt wird – Kekse werden weich." },
+  { c: "welt", t: "Der Hersteller von Pringles argumentierte vor Gericht, Pringles seien keine Kartoffelchips, weil sie nur etwa 42 Prozent Kartoffel enthalten. Die Richter sahen das 2009 anders." },
+  { c: "welt", t: "Der US-Bundesstaat Arkansas erhebt Umsatzsteuer auf Tattoos und Piercings." },
+  { c: "welt", t: "In vielen US-Bundesstaaten zahlen Profisportler Einkommensteuer für jedes Auswärtsspiel – die sogenannte „Jock Tax“." },
+  { c: "welt", t: "Mehrere US-Bundesstaaten verlangen von Drogendealern, Steuermarken für illegale Drogen zu kaufen – auf Wunsch anonym." },
+  { c: "welt", t: "Alaska erhebt keine Einkommensteuer – und zahlt seinen Einwohnern sogar jedes Jahr eine Dividende aus dem Ölfonds." },
+  { c: "welt", t: "Das US-Finanzministerium hat seit 1811 einen „Gewissensfonds“: Wer den Staat betrogen hat, kann anonym Geld zurückschicken." },
+  { c: "welt", t: "Die meisten Esten erledigen ihre Steuererklärung online in wenigen Minuten – die Daten sind größtenteils schon vorausgefüllt." },
+  { c: "welt", t: "Auf den Cayman Islands sind mehr Unternehmen registriert, als Menschen dort leben." },
+  { c: "welt", t: "Im Ugland House, einem fünfstöckigen Bürogebäude auf den Cayman Islands, waren 2008 fast 19.000 Firmen gemeldet." },
+  { c: "welt", t: "Das Haus 1209 North Orange Street in Wilmington, Delaware, ist die offizielle Adresse von Hunderttausenden Firmen." },
+  { c: "welt", t: "Seit 2024 gilt in vielen Ländern eine globale Mindeststeuer von 15 Prozent für große Konzerne." },
+  { c: "welt", t: "Das Steuersparmodell „Double Irish with a Dutch Sandwich“ heißt wirklich so. Große Tech-Konzerne nutzten es bis 2020." },
+  { c: "welt", t: "Weil Bier in Japan lange nach Malzgehalt besteuert wurde, erfanden die Brauereien „Happoshu“ und sogar „drittes Bier“ – mit wenig oder gar keinem Malz." },
+  { c: "welt", t: "In Japan kann man einen Teil seiner Steuern an eine Gemeinde seiner Wahl spenden – und bekommt dafür Geschenke wie Wagyu-Rind oder Krabben." },
+  { c: "welt", t: "Mexiko führte 2014 eine Steuer von einem Peso pro Liter auf zuckerhaltige Getränke ein." },
+  { c: "welt", t: "Griechenland, 2010: Auf Satellitenbildern von Athener Nobelvororten zählten Steuerfahnder fast 17.000 Swimmingpools. Angemeldet waren rund 300." },
+  { c: "welt", t: "Als Frankreich 2012 eine 75-Prozent-Reichensteuer plante, zog Gérard Depardieu nach Belgien – und nahm später die russische Staatsbürgerschaft an." },
+  { c: "welt", t: "Astrid Lindgren sollte 1976 auf Teile ihres Einkommens 102 Prozent Steuern zahlen. Sie schrieb darüber das Märchen „Pomperipossa in Monismanien“." },
+  { c: "welt", t: "Die Rolling Stones zogen 1971 wegen der hohen britischen Steuern nach Frankreich. Dort entstand das Album „Exile on Main St.“." },
+  { c: "welt", t: "Der Beatles-Song „Taxman“ von 1966 ist eine Abrechnung mit dem damaligen britischen Spitzensteuersatz von 95 Prozent." },
+  { c: "welt", t: "Willie Nelson schuldete dem US-Finanzamt 16,7 Millionen Dollar. Um sie abzustottern, veröffentlichte er das Album „The IRS Tapes“." },
+  { c: "welt", t: "Ein US-Gericht erlaubte 1994 einer Stripperin, ihre Brustimplantate als Betriebsausgabe abzuschreiben – als „Bühnenrequisite“." },
+  { c: "welt", t: "In vielen Schweizer Kantonen zahlen auch Unternehmen Kirchensteuer – obwohl eine Firma nicht in die Kirche geht." },
+  { c: "welt", t: "Österreich setzte die Sektsteuer 2005 auf null, führte sie 2014 wieder ein – und schaffte sie 2020 erneut ab." },
+  { c: "welt", t: "Nach der Mondlandung füllten die Apollo-11-Astronauten in Honolulu eine Zollerklärung aus. Angegebene Fracht: Mondgestein und Mondstaub." },
+  { c: "welt", t: "Bulgarien hat einen der niedrigsten Einkommensteuersätze der EU: pauschal 10 Prozent für alle." },
+  { c: "welt", t: "Seit 2020 zahlen Mütter von vier oder mehr Kindern in Ungarn lebenslang keine Einkommensteuer." },
+  { c: "welt", t: "Das Taxi und die englische „tax“ haben denselben Ursprung: das lateinische „taxare“ – schätzen, bewerten." },
+  { c: "welt", t: "Die Mehrwertsteuer ist eine französische Erfindung: Maurice Lauré entwickelte sie in den 1950er-Jahren." },
+  { c: "welt", t: "Die USA haben als eines der wenigen Industrieländer keine landesweite Mehrwertsteuer." },
+  { c: "welt", t: "Hongkong kennt überhaupt keine Mehrwert- oder Umsatzsteuer." },
+
+  // ——— Geschichte ———
+  { c: "geschichte", t: "Kaiser Vespasian besteuerte im alten Rom den Urin aus öffentlichen Latrinen – Gerber und Wäscher nutzten ihn. Von ihm soll der Satz stammen: „Geld stinkt nicht.“" },
+  { c: "geschichte", t: "In Frankreich hießen öffentliche Pissoirs lange „Vespasiennes“ – benannt nach dem römischen Kaiser mit der Urinsteuer." },
+  { c: "geschichte", t: "Zar Peter der Große führte 1698 eine Bartsteuer ein. Wer zahlte, bekam eine Bartmarke als Quittung." },
+  { c: "geschichte", t: "Peter der Große führte 1724 eine „Seelensteuer“ ein – gezahlt wurde pro männlichem Untertan." },
+  { c: "geschichte", t: "Von 1696 bis 1851 gab es in England eine Fenstersteuer. Viele Hausbesitzer mauerten Fenster zu – an alten Häusern sieht man das noch heute." },
+  { c: "geschichte", t: "Großbritannien besteuerte von 1712 bis 1836 bedruckte Tapeten." },
+  { c: "geschichte", t: "Großbritannien hatte von 1784 bis 1811 eine Hutsteuer. Im Hutfutter musste eine Steuermarke kleben – Fälschern drohte die Todesstrafe." },
+  { c: "geschichte", t: "Die britische Ziegelsteuer (1784–1850) wurde pro Stück erhoben. Die Folge: Ziegel wurden einfach größer." },
+  { c: "geschichte", t: "Das kunstvoll verzierte Pik-Ass in englischen Kartenspielen geht auf eine Steuer zurück: Auf dieser Karte wurde die Spielkartensteuer quittiert." },
+  { c: "geschichte", t: "In England gab es von 1662 bis 1689 eine Herdsteuer: Bezahlt wurde pro Feuerstelle im Haus." },
+  { c: "geschichte", t: "Frankreich besteuerte von 1798 bis 1926 Türen und Fenster." },
+  { c: "geschichte", t: "Die verhasste Salzsteuer „Gabelle“ gilt als einer der Funken der Französischen Revolution." },
+  { c: "geschichte", t: "Der Stein von Rosette – Schlüssel zur Entzifferung der Hieroglyphen – enthält unter anderem ein Dekret über Steuerbefreiungen für Tempel und Priester." },
+  { c: "geschichte", t: "Im alten Ägypten maßen Nilometer den Wasserstand des Nils. Je höher die Flut, desto besser die Ernte – und desto höher die Steuern." },
+  { c: "geschichte", t: "Laut Bibel sammelte Josef in Ägypten ein Fünftel jeder Ernte für den Pharao ein." },
+  { c: "geschichte", t: "Laut Lukasevangelium wurde Jesus in Bethlehem geboren, weil Maria und Josef zu einer Steuererfassung dorthin reisen mussten." },
+  { c: "geschichte", t: "Der Apostel Matthäus war vor seiner Berufung Zöllner – also Steuereintreiber." },
+  { c: "geschichte", t: "Einer der ältesten bekannten Steuerreformer: König Urukagina von Lagasch senkte um 2350 v. Chr. Abgaben und ging gegen gierige Steuereintreiber vor." },
+  { c: "geschichte", t: "Kaiser Augustus führte eine Erbschaftsteuer von 5 Prozent ein – um die Altersversorgung seiner Soldaten zu bezahlen." },
+  { c: "geschichte", t: "Laut dem Geschichtsschreiber Sueton ließ Kaiser Caligula sogar das Einkommen von Prostituierten besteuern." },
+  { c: "geschichte", t: "Im antiken Athen mussten reiche Bürger Kriegsschiffe und Theateraufführungen aus eigener Tasche bezahlen – die sogenannte Liturgie." },
+  { c: "geschichte", t: "Der Legende nach ritt Lady Godiva nackt durch Coventry, damit ihr Mann die Steuern der Stadt senkte." },
+  { c: "geschichte", t: "Die Magna Carta von 1215 bestimmte, dass der englische König bestimmte Abgaben nicht ohne Zustimmung erheben durfte." },
+  { c: "geschichte", t: "Bei der Boston Tea Party 1773 kippten Kolonisten 342 Kisten Tee ins Hafenbecken – Protest gegen Steuern ohne politische Mitsprache." },
+  { c: "geschichte", t: "Von 1429 bis 1857 musste jedes Schiff durch den Öresund Zoll an Dänemark zahlen – kassiert in Helsingør, wo heute Hamlets Schloss Kronborg steht." },
+  { c: "geschichte", t: "Burg Pfalzgrafenstein steht mitten im Rhein bei Kaub – gebaut als Zollstation. Kein Schiff kam vorbei, ohne zu zahlen." },
+  { c: "geschichte", t: "Der „Gemeine Pfennig“ von 1495 war die erste allgemeine Reichssteuer im Heiligen Römischen Reich. Er sollte unter anderem den Kampf gegen die Osmanen bezahlen." },
+  { c: "geschichte", t: "Friedrich der Große schickte ab 1781 „Kaffeeriecher“ durch Preußen. Sie sollten Leute erschnüffeln, die heimlich Kaffee rösteten – das Rösten war Staatssache." },
+  { c: "geschichte", t: "Im Mittelalter mussten Bauern den „Zehnten“ ihrer Ernte abgeben. Die Zehntscheunen dafür stehen noch heute in vielen Dörfern." },
+  { c: "geschichte", t: "Die Inka kannten kein Geld. Steuern wurden als Arbeit geleistet – das System hieß Mit’a." },
+  { c: "geschichte", t: "In Japan wurden Steuern jahrhundertelang in Reis bemessen – in Koku, etwa der Menge, die ein Mensch in einem Jahr isst." },
+  { c: "geschichte", t: "Großbritannien führte 1799 die Einkommensteuer ein, um die Kriege gegen Napoleon zu bezahlen – als „vorübergehende“ Maßnahme." },
+  { c: "geschichte", t: "Die US-Einkommensteuer von 1913 hatte einen Höchstsatz von 7 Prozent. Das Formular 1040 umfasste samt Anleitung vier Seiten." },
+  { c: "geschichte", t: "Der höchste Einkommensteuersatz der US-Geschichte lag 1944 bei 94 Prozent." },
+  { c: "geschichte", t: "In den 1970er-Jahren lag der britische Spitzensteuersatz auf Kapitalerträge bei 98 Prozent." },
+  { c: "geschichte", t: "Al Capone wurde nicht wegen Mord oder Schmuggel verurteilt, sondern 1931 wegen Steuerhinterziehung – zu elf Jahren Haft." },
+  { c: "geschichte", t: "In der Sowjetunion gab es ab 1941 eine Steuer auf Kinderlosigkeit." },
+  { c: "geschichte", t: "Großbritannien schaffte seine Hundesteuer Ende der 1980er-Jahre ab. Sie kostete zuletzt 37 Pence – weniger, als ihre Verwaltung kostete." },
+
+  // ——— Witze ———
+  { c: "witz", t: "Ich wollte meine Katze von der Steuer absetzen.\nDas Finanzamt fragte nur: „Verdient sie denn Mäuse?“" },
+  { c: "witz", t: "Der romantischste Heiratsantrag eines Steuerberaters:\n„Willst du mit mir gemeinsam veranlagt werden?“" },
+  { c: "witz", t: "Die Steuererklärung ist der einzige Liebesbrief, auf den man garantiert eine Antwort bekommt." },
+  { c: "witz", t: "Wie viele Steuerberater braucht man, um eine Glühbirne zu wechseln?\nKommt drauf an: Wollen Sie sie sofort absetzen oder abschreiben?" },
+  { c: "witz", t: "Treffen sich zwei Finanzbeamte. „Na, wie geht’s?“\n„Das kann ich Ihnen ohne Beleg leider nicht beantworten.“" },
+  { c: "witz", t: "Der Pessimist: „Schlimmer kann’s nicht werden.“\nDer Optimist: „Doch! Die nächste Steuerreform kommt bestimmt.“" },
+  { c: "witz", t: "Wer spart, zahlt Abgeltungsteuer. Wer Geld ausgibt, zahlt Mehrwertsteuer. Wer stirbt, beschert den Erben Erbschaftsteuer.\nEntkommen zwecklos." },
+  { c: "witz", t: "„Ich habe eine Steuerrückzahlung bekommen!“\n„Toll! Was machst du damit?“\n„Die Nachzahlung vom letzten Jahr.“" },
+  { c: "witz", t: "Deutsch ist eine schöne Sprache: Das Steuer bestimmt, wohin die Fahrt geht.\nDie Steuer bestimmt, ob man sie sich noch leisten kann." },
+  { c: "witz", t: "Mein Steuerberater sagt, ich soll alle Belege sammeln.\nMeine Schuhschachtel hat inzwischen eine eigene Steuer-ID." },
+  { c: "witz", t: "Das Finanzamt ist wie ein guter Freund: Es interessiert sich ehrlich für alles, was du verdienst." },
+  { c: "witz", t: "Steuern sind wie Zahnarztbesuche: Niemand mag sie – aber ohne sie bröckeln irgendwann die Brücken." },
+  { c: "witz", t: "Woran erkennt man einen extrovertierten Finanzbeamten?\nEr schaut beim Reden auf deine Schuhe statt auf seine." },
+  { c: "witz", t: "Was ist der Unterschied zwischen einer Steuererklärung und einem Krimi?\nBeim Krimi weiß man am Ende, wer schuld ist." },
+  { c: "witz", t: "Warum nennt der Steuerberater seinen Hund „Werbungskosten“?\nDamit er ihn endlich mal absetzen kann." },
+  { c: "witz", t: "Was macht ein Steuerberater, wenn er dringend Urlaub braucht?\nEr setzt sich ab." },
+  { c: "witz", t: "Warum war die Steuererklärung so erschöpft?\nSie hatte zu viele Anlagen." },
+  { c: "witz", t: "Was ist die Lieblingsdisziplin des Finanzamts?\nSchätzen. Und zwar großzügig." },
+  { c: "witz", t: "Mein Neujahrsvorsatz: die Steuererklärung pünktlich abgeben.\nMein Vorsatz vom letzten Jahr: die vom vorletzten Jahr abgeben." },
+  { c: "witz", t: "„Papa, was ist kalte Progression?“\n„Wenn du mehr Taschengeld bekommst und dir trotzdem weniger Eis leisten kannst.“" },
+  { c: "witz", t: "Ein Finanzbeamter droht zu ertrinken. Der Retter ruft: „Geben Sie mir Ihre Hand!“ Nichts passiert.\n„Nehmen Sie meine Hand!“ – Sofort greift er zu." },
+  { c: "witz", t: "Was ist der Unterschied zwischen dem Tod und den Steuern?\nDen Tod erlebt man nur einmal." },
+  { c: "witz", t: "Ein Steuerberater löst Probleme, von denen Sie nicht wussten, dass Sie sie haben – auf eine Weise, die Sie nicht verstehen." },
+
+  // ——— Zitate ———
+  { c: "zitat", t: "Nichts auf dieser Welt ist sicher, außer dem Tod und den Steuern.", a: "Benjamin Franklin, 1789" },
+  { c: "zitat", t: "Das Schwierigste auf der Welt zu verstehen ist die Einkommensteuer.", a: "Albert Einstein zugeschrieben" },
+  { c: "zitat", t: "Steuern sind der Preis, den wir für eine zivilisierte Gesellschaft zahlen.", a: "Oliver Wendell Holmes Jr., Richter am Supreme Court, 1927" },
+  { c: "zitat", t: "Die Kunst der Besteuerung besteht darin, die Gans so zu rupfen, dass man möglichst viele Federn bei möglichst wenig Gezische erhält.", a: "Jean-Baptiste Colbert zugeschrieben" },
+  { c: "zitat", t: "Der einzige Unterschied zwischen einem Tierpräparator und einem Steuereintreiber: Der Präparator lässt einem das Fell.", a: "Mark Twain zugeschrieben" },
+  { c: "zitat", t: "Der Unterschied zwischen Tod und Steuern: Der Tod wird nicht jedes Mal schlimmer, wenn der Kongress tagt.", a: "Will Rogers zugeschrieben" },
+  { c: "zitat", t: "Wenn es sich bewegt, besteuere es. Wenn es sich weiter bewegt, reguliere es. Und wenn es sich nicht mehr bewegt, subventioniere es.", a: "Ronald Reagan über den Blick des Staates auf die Wirtschaft, 1986" },
+  { c: "zitat", t: "Eine Nation, die sich in den Wohlstand besteuern will, gleicht einem Mann, der in einem Eimer steht und sich am Henkel hochheben will.", a: "Winston Churchill zugeschrieben" },
+  { c: "zitat", t: "Steuervermeidung ist die einzige intellektuelle Beschäftigung, die sich noch lohnt.", a: "John Maynard Keynes zugeschrieben" },
+  { c: "zitat", t: "Der Unterschied zwischen Steuervermeidung und Steuerhinterziehung ist die Dicke einer Gefängnismauer.", a: "Denis Healey, britischer Finanzminister" },
+  { c: "zitat", t: "Ich bin stolz, in den Vereinigten Staaten Steuern zu zahlen. Ich könnte allerdings genauso stolz sein für die Hälfte des Geldes.", a: "Arthur Godfrey, US-Entertainer" },
+  { c: "zitat", t: "Nur die kleinen Leute zahlen Steuern.", a: "Leona Helmsley laut Zeugenaussage – sie wurde später wegen Steuerhinterziehung verurteilt" },
+  { c: "zitat", t: "Wo es eine Einkommensteuer gibt, zahlt der Gerechte bei gleichem Einkommen mehr und der Ungerechte weniger.", a: "Platon, „Politeia“" },
+];
+
+const STAMPS = {
+  de: ["Amtlich geprüft", "Deutschland"],
+  welt: ["International", "Weltweit"],
+  geschichte: ["Aus dem Archiv", "Historisch"],
+  witz: ["Nicht absetzbar", "Witz"],
+  zitat: ["Zu Protokoll", "Zitat"],
+};
+
+const params = new URLSearchParams(location.search);
+
+const theme = (params.get("theme") || "").toLowerCase();
+if (theme.startsWith("hell") || theme === "light") document.documentElement.dataset.theme = "light";
+if (theme.startsWith("dunkel") || theme === "dark") document.documentElement.dataset.theme = "dark";
+
+// Jeder Eintrag bleibt mindestens 20 Sekunden stehen; 0 schaltet den automatischen Wechsel ab.
+const MIN_INTERVAL = 20;
+const intervalParam = parseFloat(params.get("interval"));
+const INTERVAL = Number.isFinite(intervalParam) ? (intervalParam <= 0 ? 0 : Math.max(MIN_INTERVAL, intervalParam)) : 60;
+
+function categoriesFor(value) {
+  const v = (value || "").toLowerCase();
+  if (v.startsWith("deutsch")) return ["de"];
+  if (v.startsWith("welt") || v.startsWith("geschichte")) return ["welt", "geschichte"];
+  if (v.startsWith("witz") || v.startsWith("zitat")) return ["witz", "zitat"];
+  if (v.includes("fakt")) return ["de", "welt", "geschichte"];
+  return Object.keys(STAMPS);
+}
+const CATS = categoriesFor(params.get("category"));
+const POOL = FACTS.map((f, i) => (CATS.includes(f.c) ? i : -1)).filter(i => i >= 0);
+
+// Mischbeutel: Beim Laden und bei jedem Wechsel kommt ein zufälliger Eintrag. Jeder Eintrag kommt
+// einmal dran, bevor sich etwas wiederholt – auch über Neuladen hinweg.
+const BAG_KEY = `usw-bag:${CATS.join("+")}:${FACTS.length}`;
+const LAST_KEY = `usw-last:${FACTS.length}`;
+function load(key) { try { return JSON.parse(localStorage.getItem(key)); } catch { return null; } }
+function save(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* egal */ } }
+
+let bag = (load(BAG_KEY) || []).filter(i => POOL.includes(i));
+// zuletzt gezeigter Eintrag, damit nach dem Neuladen nicht derselbe wieder erscheint
+let current = Number.isInteger(load(LAST_KEY)) ? load(LAST_KEY) : -1;
+
+function drawIndex() {
+  if (!bag.length) {
+    bag = POOL.slice();
+    for (let i = bag.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [bag[i], bag[j]] = [bag[j], bag[i]];
+    }
+  }
+  if (bag.length > 1 && bag[bag.length - 1] === current) bag.unshift(bag.pop());
+  const next = bag.pop();
+  save(BAG_KEY, bag);
+  return next;
+}
+
+const els = {
+  main: document.querySelector("main"),
+  fact: document.getElementById("fact"),
+  az: document.getElementById("az"),
+  stamp: document.getElementById("stamp"),
+  date: document.getElementById("date"),
+  progress: document.getElementById("progress"),
+};
+
+function fit() {
+  const box = els.main;
+  const style = getComputedStyle(box);
+  const h = box.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+  const w = box.clientWidth;
+  const vmin = Math.min(innerWidth, innerHeight) / 100;
+  let lo = 12;
+  // Obergrenze: mind. ~22 Zeichen pro Zeile, damit kurze Texte nicht in Einzelwörter zerfallen
+  let hi = Math.max(lo + 1, Math.min(h * 0.3, w / 10.5, 12 * vmin));
+  for (let k = 0; k < 18; k++) {
+    const mid = (lo + hi) / 2;
+    els.fact.style.fontSize = mid + "px";
+    if (els.fact.scrollHeight <= h && els.fact.scrollWidth <= w) lo = mid; else hi = mid;
+  }
+  // etwas Luft lassen: weniger Silbentrennung, ruhigeres Schriftbild
+  els.fact.style.fontSize = Math.floor(lo * 0.94) + "px";
+}
+
+function fill(index) {
+  const f = FACTS[index];
+  els.fact.textContent = "";
+  els.fact.classList.toggle("is-quote", f.c === "zitat");
+  const text = document.createElement("span");
+  text.className = "text";
+  text.textContent = f.c === "zitat" ? `„${f.t}“` : f.t;
+  els.fact.append(text);
+  if (f.a) {
+    const by = document.createElement("span");
+    by.className = "by";
+    by.textContent = "— " + f.a;
+    els.fact.append(by);
+  }
+  els.az.textContent = `Az. USW-${String(index + 1).padStart(3, "0")}`;
+  const [small, big] = STAMPS[f.c];
+  els.stamp.dataset.cat = f.c;
+  els.stamp.innerHTML = "";
+  const s = document.createElement("small");
+  s.textContent = small;
+  const b = document.createElement("b");
+  b.textContent = big;
+  els.stamp.append(s, b);
+  els.stamp.classList.remove("thump");
+  void els.stamp.offsetWidth;
+  els.stamp.classList.add("thump");
+  fit();
+}
+
+let timer = 0;
+let busy = false;
+
+function schedule() {
+  clearTimeout(timer);
+  els.progress.classList.remove("run");
+  if (!INTERVAL) return;
+  void els.progress.offsetWidth;
+  els.progress.style.animationDuration = INTERVAL + "s";
+  els.progress.classList.add("run");
+  timer = setTimeout(next, INTERVAL * 1000);
+}
+
+function show(index, animate) {
+  current = index;
+  save(LAST_KEY, index);
+  if (!animate) {
+    fill(index);
+    schedule();
+    return;
+  }
+  busy = true;
+  els.fact.classList.add("leaving");
+  setTimeout(() => {
+    els.fact.classList.remove("leaving");
+    els.fact.classList.add("entering");
+    fill(index);
+    void els.fact.offsetWidth;
+    els.fact.classList.remove("entering");
+    busy = false;
+    schedule();
+  }, 320);
+}
+
+function next() {
+  if (busy || !POOL.length) return;
+  show(drawIndex(), true);
+}
+
+els.date.textContent = new Date().toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+
+show(drawIndex(), false);
+
+document.addEventListener("pointerup", next);
+document.addEventListener("keydown", e => {
+  if ([" ", "Enter", "ArrowRight"].includes(e.key)) { e.preventDefault(); next(); }
+});
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+let resizeFrame = 0;
+new ResizeObserver(() => {
+  cancelAnimationFrame(resizeFrame);
+  resizeFrame = requestAnimationFrame(fit);
+}).observe(els.main);
+</script>
+</body>
+</html>

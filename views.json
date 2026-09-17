@@ -81,5 +81,39 @@
     "image_icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAIAAAC0Ujn1AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC70lEQVRIx62WQWhcVRSGv//cl2YmmYSGgEoQg4ILhYJQN4ooBclCKl0piq4sKGIXbqyt0oVYqtiduHGloktdVFQq0oW4kS7cWBQXWhSrVYSSjpN05r17jotJMjMx0xkmvcv7Lv/533fOPecqH0EBmRu5EiEVBmGK2iwRhO9WVEKmck3ZC0pifq8f/c4ai0zVQLvQDcp2lG1O79cfvxYAQgu3RvMy359lKhExod8ys3yPbroTiaAAcCcV/PBFeuc5GjAZFYMm1dMn9MhreIaudHdN1WgkGgVeTSRdEBV7ZpG6VPukI/CMqxuz+5NYgujb2fpiyPAM0Tvsub8QrKf8/wRG0Ky4lpG2Y+04zQrfnhVthAr1S4sYOOPkmYXy0CvV3QdoB7Ke33ZUd9xbHno1710i0x84NipM0S+9zTBmara0/3GePZNn5jYlROBpimc+1kNH1FzFjBia1yFATJY7vPekanOxcjTWHBmWaLk/eNgWl3n/CWu1SGIn7esAAc/UU7r4o5//SA+/7DffQulkz/MNDp70n86lC1/TSDtkeJPMiDRqWvr0GGb+6MnoBNc8Vl7S7CKfvKgkYkShD3ENhDNtxZ+X4txpu/+wLy3nuYZWjsX5D9PPF6gZMbSraaCud1zu1E1n3+CB5+Pgqfj3b0M6c1zTGtkPRklHUKS0erX87IQ99naC/OWpdPkSc0Mp78B6KDjP1M2+eZd/fvG1K/rqLdU1sv0OAtFwByZb73jzLyStr5IgxupXo1xvXW4rUMI0fisc6Xozsld4NWY3v85F32nNLDC7OP7xYjwgQSK+/YDa/Jg8xkwjRKggff4mgepjSYdG1nW/kZm0UYvjwS4GBkcqsGL0oBq2n+i19QEgnXVWK7yadOxWXIVOq5u0TdYyqg6335efep09RkRvXIyuMfVPNd11AIQstqSjbNvSPpb27f5RFoBMoHiBSCkWbttI0eSPJxGBJWS68htVWYSknPX7xRvyjuwCihpu+g8koy52NTk+ZwAAAABJRU5ErkJggg==",
     "requirements": [],
     "settings": []
+  },
+  {
+    "name": "Unnützes Steuerwissen",
+    "description": "Zufällige Kuriositäten, Fakten, Witze und Zitate rund um Steuern aus Deutschland und der ganzen Welt – amtlich gestempelt und völlig unnütz. Optimiert für Hochformat (9:16), Tippen zeigt den nächsten Eintrag.",
+    "url": "https://davidurbansky.com/joyboard/steuerwissen/",
+    "modification": {
+      "include_xpaths": [],
+      "exclude_xpaths": [],
+      "css": ""
+    },
+    "utf8_icon": "🧾",
+    "image_icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICA8dGl0bGU+VW5uw7x0emVzIFN0ZXVlcndpc3NlbjwvdGl0bGU+CiAgPHBhdGggZD0iTTEzIDkuNWE0IDQgMCAwIDEgNC00aDE5bDExIDExdjM1YTQgNCAwIDAgMS00IDRIMTdhNCA0IDAgMCAxLTQtNHoiIGZpbGw9IiNmM2VlZTEiIHN0cm9rZT0iIzI2MzEyYiIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPHBhdGggZD0iTTM2IDUuNXY4YTMgMyAwIDAgMCAzIDNoOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjYzMTJiIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8cGF0aCBkPSJNMjAgMjJoMTRNMjAgMjloMjBNMjAgMzZoMTAiIHN0cm9rZT0iIzI2MzEyYiIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8ZyB0cmFuc2Zvcm09InJvdGF0ZSgtMTIgNDIgNDYpIj4KICAgIDxyZWN0IHg9IjI4IiB5PSIzNiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjIwIiByeD0iMy41IiBmaWxsPSIjZjNlZWUxIiBzdHJva2U9IiNiMzMxMmEiIHN0cm9rZS13aWR0aD0iMy41Ii8+CiAgICA8Y2lyY2xlIGN4PSIzNi41IiBjeT0iNDEuOCIgcj0iMi40IiBmaWxsPSJub25lIiBzdHJva2U9IiNiMzMxMmEiIHN0cm9rZS13aWR0aD0iMi40Ii8+CiAgICA8Y2lyY2xlIGN4PSI0Ny41IiBjeT0iNTAuMiIgcj0iMi40IiBmaWxsPSJub25lIiBzdHJva2U9IiNiMzMxMmEiIHN0cm9rZS13aWR0aD0iMi40Ii8+CiAgICA8cGF0aCBkPSJNNDggNDAuNSAzNiA1MS41IiBzdHJva2U9IiNiMzMxMmEiIHN0cm9rZS13aWR0aD0iMi42IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L2c+Cjwvc3ZnPgo=",
+    "preview_images": ["https://davidurbansky.com/joyboard/steuerwissen/preview-1.png", "https://davidurbansky.com/joyboard/steuerwissen/preview-2.png"],
+    "requirements": [],
+    "settings": [
+      {
+        "key": "interval",
+        "label": "Sekunden bis zum nächsten Eintrag (mindestens 20, 0 = kein Wechsel)",
+        "placeholder": "60",
+        "type": "number"
+      },
+      {
+        "key": "category",
+        "label": "Themen",
+        "options": ["Alles", "Nur Fakten", "Deutschland", "Welt und Geschichte", "Witze und Zitate"],
+        "type": "select"
+      },
+      {
+        "key": "theme",
+        "label": "Farbschema",
+        "options": ["Automatisch", "Hell", "Dunkel"],
+        "type": "select"
+      }
+    ]
   }
 ]
