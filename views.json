@@ -115,5 +115,39 @@
         "type": "select"
       }
     ]
+  },
+  {
+    "name": "Deutsche Reality TV Nachrichten",
+    "description": "Zufällige aktuelle Reality-TV-News von BILD, Promiflash und Klatsch-Tratsch – mit Schlagzeile, Bild und kurzem Auszug. Optimiert für Hochformat (9:16), Tippen zeigt den nächsten Beitrag.",
+    "url": "https://davidurbansky.com/joyboard/reality-tv/",
+    "modification": {
+      "include_xpaths": [],
+      "exclude_xpaths": [],
+      "css": ""
+    },
+    "utf8_icon": "📺",
+    "image_icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICA8dGl0bGU+UmVhbGl0eS1UViBOZXdzPC90aXRsZT4KICA8cGF0aCBkPSJNMzIgMTcgMjEgNi41TTMyIDE3IDQzIDYuNSIgc3Ryb2tlPSIjZTAxODZjIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxjaXJjbGUgY3g9IjIxIiBjeT0iNi41IiByPSIyLjYiIGZpbGw9IiNlMDE4NmMiLz4KICA8Y2lyY2xlIGN4PSI0MyIgY3k9IjYuNSIgcj0iMi42IiBmaWxsPSIjZTAxODZjIi8+CiAgPHJlY3QgeD0iNSIgeT0iMTYiIHdpZHRoPSI1NCIgaGVpZ2h0PSI0MiIgcng9IjkiIGZpbGw9IiNlMDE4NmMiLz4KICA8cmVjdCB4PSIxMSIgeT0iMjIiIHdpZHRoPSI0MiIgaGVpZ2h0PSIzMCIgcng9IjUuNSIgZmlsbD0iIzFjMTIxOSIvPgogIDxwYXRoIGQ9Ik0zMiA0Ni41Yy03LjYtNC45LTExLjUtOS0xMS41LTEzLjJhNS42IDUuNiAwIDAgMSAxMS41LTIuNCA1LjYgNS42IDAgMCAxIDExLjUgMi40YzAgNC4yLTMuOSA4LjMtMTEuNSAxMy4yeiIgZmlsbD0iI2ZmZmZmZiIvPgo8L3N2Zz4K",
+    "preview_images": ["https://davidurbansky.com/joyboard/reality-tv/preview-1.jpg", "https://davidurbansky.com/joyboard/reality-tv/preview-2.jpg"],
+    "requirements": [],
+    "settings": [
+      {
+        "key": "interval",
+        "label": "Sekunden bis zum nächsten Beitrag (mindestens 20, 0 = kein Wechsel)",
+        "placeholder": "20",
+        "type": "number"
+      },
+      {
+        "key": "quelle",
+        "label": "Quelle",
+        "options": ["Alle", "BILD", "Promiflash", "Klatsch-Tratsch"],
+        "type": "select"
+      },
+      {
+        "key": "theme",
+        "label": "Farbschema",
+        "options": ["Automatisch", "Hell", "Dunkel"],
+        "type": "select"
+      }
+    ]
   }
 ]
