@@ -645,7 +645,7 @@ function notifyBoard(gesture) {
   if (window.parent === window) return false;
   try {
     window.parent.postMessage({ joyboard: "swipe", direction: gesture === "swipe-left" ? "left" : "right" }, "*");
-    return true;
+    return false;
   } catch {
     return false;
   }
