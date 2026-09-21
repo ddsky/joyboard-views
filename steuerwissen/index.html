@@ -628,7 +628,41 @@ els.date.textContent = new Date().toLocaleDateString("de-DE", { day: "2-digit", 
 
 show(drawIndex(), false);
 
-document.addEventListener("pointerup", next);
+// Tippen zeigt den naechsten Eintrag, Wischen gehoert dem Joyboard. Die Seite laeuft im Joyboard in
+// einem iframe: Zeigerereignisse erreichen das Board dort nie, ein Wisch wuerde also nur den naechsten
+// Fakt ziehen statt den Screen zu wechseln. Horizontale Wische werden deshalb ans Board gemeldet.
+// joyboard-swipe-start (Vertrag fuer tests/steuerwissen-interaction.test.mjs)
+const SWIPE_THRESHOLD_PX = 50;
+function classifyPointerGesture(dx, dy) {
+  if (Math.abs(dx) > SWIPE_THRESHOLD_PX && Math.abs(dx) > Math.abs(dy)) {
+    return dx < 0 ? "swipe-left" : "swipe-right";
+  }
+  return "tap";
+}
+// joyboard-swipe-end
+
+function notifyBoard(gesture) {
+  if (window.parent === window) return false;
+  try {
+    window.parent.postMessage({ joyboard: "swipe", direction: gesture === "swipe-left" ? "left" : "right" }, "*");
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+let pointerStart = null;
+document.addEventListener("pointerdown", e => {
+  pointerStart = { x: e.clientX, y: e.clientY };
+});
+document.addEventListener("pointerup", e => {
+  const start = pointerStart;
+  pointerStart = null;
+  const gesture = start ? classifyPointerGesture(e.clientX - start.x, e.clientY - start.y) : "tap";
+  if (gesture === "tap") { next(); return; }
+  // Nimmt das Board den Wisch nicht an (Seite laeuft eigenstaendig), bleibt es beim naechsten Eintrag.
+  if (!notifyBoard(gesture)) next();
+});
 document.addEventListener("keydown", e => {
   if ([" ", "Enter", "ArrowRight"].includes(e.key)) { e.preventDefault(); next(); }
 });

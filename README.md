@@ -32,6 +32,26 @@ To define a view you have some required and some optional fields.
 ```
 This is then added via `&count=123` to the `url`, e.g. `https://myserver.com/joyview?count=123`. Each setting must have a `key` (should be lowercase and contain no special characters), a human readable `label` which is shown to the user, and a `type` (must be one of `text`, `number`, `select`).
 
+#### Talking back to the board (optional)
+
+A view is shown inside an iframe, so **the board never sees pointer events that happen inside your
+view** — a swipe over your page cannot reach the board's own swipe handling. The board catches swipes
+that start at the very left or right edge of the screen; if you want a swipe anywhere on your page to
+work, hand it back explicitly:
+
+```js
+// user swiped horizontally -> let the board move to the next screen
+window.parent.postMessage({ joyboard: "swipe", direction: "left" }, "*");
+
+// or ask the board to reload the current screen
+window.parent.postMessage({ joyboard: "refresh" }, "*");
+```
+
+Only these two messages are accepted, and only when your view is actually embedded
+(`window.parent !== window`). If your view reacts to taps, classify first: treat a horizontal drag of
+more than 50 px (and more horizontal than vertical) as a swipe for the board, and everything else as a
+tap for your own page.
+
 #### Here's a full example:
 ```json
 {
