@@ -642,12 +642,19 @@ function classifyPointerGesture(dx, dy) {
 // joyboard-swipe-end
 
 function notifyBoard(gesture) {
-  if (window.parent === window) return false;
   return new Promise(resolve => {
+    let parentWindow = null;
+    try {
+      parentWindow = window.parent;
+      if (parentWindow === window) { resolve(false); return; }
+    } catch {
+      resolve(false);
+      return;
+    }
     const token = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
     const onMessage = event => {
       const data = event.data;
-      if (event.source !== window.parent || !data || data.joyboard !== "swipe-ack" || data.token !== token) return;
+      if (event.source !== parentWindow || !data || data.joyboard !== "swipe-ack" || data.token !== token) return;
       cleanup(true);
     };
     const cleanup = accepted => {
@@ -658,7 +665,7 @@ function notifyBoard(gesture) {
     const timeout = setTimeout(() => cleanup(false), 120);
     window.addEventListener("message", onMessage);
     try {
-      window.parent.postMessage({ joyboard: "swipe", direction: gesture === "swipe-left" ? "left" : "right", token }, "*");
+      parentWindow.postMessage({ joyboard: "swipe", direction: gesture === "swipe-left" ? "left" : "right", token }, "*");
     } catch {
       cleanup(false);
     }
