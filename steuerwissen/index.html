@@ -643,12 +643,26 @@ function classifyPointerGesture(dx, dy) {
 
 function notifyBoard(gesture) {
   if (window.parent === window) return false;
-  try {
-    window.parent.postMessage({ joyboard: "swipe", direction: gesture === "swipe-left" ? "left" : "right" }, "*");
-    return false;
-  } catch {
-    return false;
-  }
+  return new Promise(resolve => {
+    const token = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const onMessage = event => {
+      const data = event.data;
+      if (event.source !== window.parent || !data || data.joyboard !== "swipe-ack" || data.token !== token) return;
+      cleanup(true);
+    };
+    const cleanup = accepted => {
+      window.removeEventListener("message", onMessage);
+      clearTimeout(timeout);
+      resolve(accepted);
+    };
+    const timeout = setTimeout(() => cleanup(false), 120);
+    window.addEventListener("message", onMessage);
+    try {
+      window.parent.postMessage({ joyboard: "swipe", direction: gesture === "swipe-left" ? "left" : "right", token }, "*");
+    } catch {
+      cleanup(false);
+    }
+  });
 }
 
 let pointerStart = null;
@@ -669,7 +683,7 @@ document.addEventListener("pointercancel", e => {
   activePointerId = null;
 });
 
-document.addEventListener("pointerup", e => {
+document.addEventListener("pointerup", async e => {
   if (activePointerId !== null && e.pointerId !== activePointerId) return;
   const start = pointerStart;
   pointerStart = null;
@@ -677,7 +691,7 @@ document.addEventListener("pointerup", e => {
   const gesture = start ? classifyPointerGesture(e.clientX - start.x, e.clientY - start.y) : "tap";
   if (gesture === "tap") { next(); return; }
   // Nimmt das Board den Wisch nicht an (Seite laeuft eigenstaendig), bleibt es beim naechsten Eintrag.
-  if (!notifyBoard(gesture)) next();
+  if (!(await notifyBoard(gesture))) next();
 });
 document.addEventListener("keydown", e => {
   if ([" ", "Enter", "ArrowRight"].includes(e.key)) { e.preventDefault(); next(); }

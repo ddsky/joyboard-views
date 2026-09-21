@@ -58,9 +58,10 @@ runTest('the threshold matches the board (scripts/board-interaction-utils.mjs)',
 runTest('a swipe is forwarded to the board instead of drawing the next fact', () => {
     assert.match(html, /window\.parent\.postMessage\(\{ joyboard: "swipe", direction:/);
     assert.match(html, /if \(window\.parent === window\) return false;/);
+    assert.match(html, /data\.joyboard !== "swipe-ack"/);
     // a tap advances; a swipe only advances when the board did not take it
     assert.match(html, /if \(gesture === "tap"\) \{ next\(\); return; \}/);
-    assert.match(html, /if \(!notifyBoard\(gesture\)\) next\(\);/);
+    assert.match(html, /if \(!\(await notifyBoard\(gesture\)\)\) next\(\);/);
 });
 
 runTest('the page still advances on keyboard input when opened standalone', () => {
