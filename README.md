@@ -48,9 +48,11 @@ window.parent.postMessage({ joyboard: "refresh" }, "*");
 ```
 
 Only these two messages are accepted, and only when your view is actually embedded
-(`window.parent !== window`). If your view reacts to taps, classify first: treat a horizontal drag of
-more than 50 px (and more horizontal than vertical) as a swipe for the board, and everything else as a
-tap for your own page.
+(`window.parent !== window`). If you send a swipe message and need a fallback on views that don't handle
+it yet, include a `token` and wait briefly for `{ joyboard: "swipe-ack", token }` from the parent before
+running your local fallback. If your view reacts to taps, classify first: treat a horizontal drag of more
+than 50 px (and more horizontal than vertical) as a swipe for the board, and everything else as a tap for
+your own page.
 
 #### Here's a full example:
 ```json
