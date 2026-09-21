@@ -652,12 +652,28 @@ function notifyBoard(gesture) {
 }
 
 let pointerStart = null;
+let activePointerId = null;
+
 document.addEventListener("pointerdown", e => {
+  if (e.isPrimary === false) return;
+  activePointerId = e.pointerId;
   pointerStart = { x: e.clientX, y: e.clientY };
+  if (e.target && e.target.setPointerCapture) {
+    try { e.target.setPointerCapture(e.pointerId); } catch { /* ignore */ }
+  }
 });
+
+document.addEventListener("pointercancel", e => {
+  if (activePointerId !== null && e.pointerId !== activePointerId) return;
+  pointerStart = null;
+  activePointerId = null;
+});
+
 document.addEventListener("pointerup", e => {
+  if (activePointerId !== null && e.pointerId !== activePointerId) return;
   const start = pointerStart;
   pointerStart = null;
+  activePointerId = null;
   const gesture = start ? classifyPointerGesture(e.clientX - start.x, e.clientY - start.y) : "tap";
   if (gesture === "tap") { next(); return; }
   // Nimmt das Board den Wisch nicht an (Seite laeuft eigenstaendig), bleibt es beim naechsten Eintrag.
