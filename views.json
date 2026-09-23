@@ -149,5 +149,45 @@
         "type": "select"
       }
     ]
+  },
+  {
+    "name": "MadeMyDay",
+    "description": "Zufällige Sprüche und Karten von MadeMyDay – neue Beiträge kommen öfter dran, dazwischen Fundstücke aus über zehn Jahren Archiv. Derbe Sprüche sind ausgeblendet. Optimiert für Hochformat (9:16), Tippen zeigt den nächsten Spruch.",
+    "url": "https://davidurbansky.com/joyboard/mademyday/",
+    "modification": {
+      "include_xpaths": [],
+      "exclude_xpaths": [],
+      "css": ""
+    },
+    "utf8_icon": "😊",
+    "image_icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICA8dGl0bGU+TWFkZU15RGF5PC90aXRsZT4KICA8cGF0aCBkPSJNMzIgNnY1TTMyIDUzdjVNNiAzMmg1TTUzIDMyaDVNMTMuNiAxMy42bDMuNSAzLjVNNTAuNCAxMy42bC0zLjUgMy41TTEzLjYgNTAuNGwzLjUtMy41TTUwLjQgNTAuNGwtMy41LTMuNSIgc3Ryb2tlPSIjZjBhMDAwIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxjaXJjbGUgY3g9IjMyIiBjeT0iMzIiIHI9IjE2IiBmaWxsPSIjZmZkNDAwIiBzdHJva2U9IiMxZjFhMTIiIHN0cm9rZS13aWR0aD0iMyIvPgogIDxjaXJjbGUgY3g9IjI2LjUiIGN5PSIyOSIgcj0iMi4zIiBmaWxsPSIjMWYxYTEyIi8+CiAgPGNpcmNsZSBjeD0iMzcuNSIgY3k9IjI5IiByPSIyLjMiIGZpbGw9IiMxZjFhMTIiLz4KICA8cGF0aCBkPSJNMjUgMzUuNWMyLjIgMy44IDExLjggMy44IDE0IDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFmMWExMiIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==",
+    "preview_images": ["https://davidurbansky.com/joyboard/mademyday/preview-1.jpg", "https://davidurbansky.com/joyboard/mademyday/preview-2.jpg"],
+    "requirements": [],
+    "settings": [
+      {
+        "key": "interval",
+        "label": "Sekunden bis zum nächsten Spruch (mindestens 20, 0 = kein Wechsel)",
+        "placeholder": "30",
+        "type": "number"
+      },
+      {
+        "key": "auswahl",
+        "label": "Auswahl",
+        "options": ["Neue bevorzugt", "Nur neue", "Ganzes Archiv"],
+        "type": "select"
+      },
+      {
+        "key": "inhalte",
+        "label": "Inhalte",
+        "options": ["Familienfreundlich", "Alles"],
+        "type": "select"
+      },
+      {
+        "key": "theme",
+        "label": "Farbschema",
+        "options": ["Automatisch", "Hell", "Dunkel"],
+        "type": "select"
+      }
+    ]
   }
 ]
